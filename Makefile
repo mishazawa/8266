@@ -6,6 +6,7 @@ SRC=$(PWD)/src
 USER_CONFIG=$(SRC)/config/user_config.h
 USER_MODULES=$(SRC)/config/user_modules.h
 U8G2_DISPLAYS=$(SRC)/config/u8g2_displays.h
+WIFI_MONITOR=$(SRC)/config/wifi_monitor.c
 
 IMAGE_NAME=asdasd
 FILES_LIST=app.lst
@@ -18,9 +19,11 @@ copy-config:
 	rm -f $(PWD)/nodemcu-firmware/app/include/user_config.h
 	rm -f $(PWD)/nodemcu-firmware/app/include/user_modules.h
 	rm -f $(PWD)/nodemcu-firmware/app/include/u8g2_displays.h
+	rm -f $(PWD)/nodemcu-firmware/app/modules/wifi_monitor.c
 	cp $(USER_CONFIG) $(PWD)/nodemcu-firmware/app/include/user_config.h
 	cp $(USER_MODULES) $(PWD)/nodemcu-firmware/app/include/user_modules.h
 	cp $(U8G2_DISPLAYS) $(PWD)/nodemcu-firmware/app/include/u8g2_displays.h
+	cp $(WIFI_MONITOR) $(PWD)/nodemcu-firmware/app/modules/wifi_monitor.c
 
 build-firmware: copy-config
 	docker run --rm \
